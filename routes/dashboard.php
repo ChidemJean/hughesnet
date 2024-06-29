@@ -1,0 +1,145 @@
+<?php
+
+use App\Actions\Article\InertiaArticles;
+use App\Actions\Article\InertiaCreateArticle;
+use App\Actions\Article\InertiaEditArticle;
+use App\Actions\Article\QueryArticles;
+use App\Actions\Article\StoreArticle;
+use App\Actions\Article\UpdateArticle;
+use App\Actions\Authors\InertiaAuthors;
+use App\Actions\Blog\InertiaBlogCategories;
+use App\Actions\Authors\InertiaCreateAuthor;
+use App\Actions\Blog\InertiaCreateBlogCategory;
+use App\Actions\Authors\InertiaEditAuthor;
+use App\Actions\Blog\InertiaEditBlogCategory;
+use App\Actions\Authors\QueryAuthors;
+use App\Actions\Blog\QueryBlogCategories;
+use App\Actions\Authors\StoreAuthor;
+use App\Actions\Blog\StoreBlogCategory;
+use App\Actions\Authors\UpdateAuthor;
+use App\Actions\Banner\InertiaBanners;
+use App\Actions\Banner\InertiaCreateBanner;
+use App\Actions\Banner\InertiaEditBanner;
+use App\Actions\Banner\QueryBanners;
+use App\Actions\Banner\StoreBanner;
+use App\Actions\Banner\UpdateBanner;
+use App\Actions\Benefit\InertiaBenefits;
+use App\Actions\Benefit\InertiaCreateBenefit;
+use App\Actions\Benefit\InertiaEditBenefit;
+use App\Actions\Benefit\QueryBenefits;
+use App\Actions\Benefit\StoreBenefit;
+use App\Actions\Benefit\UpdateBenefit;
+use App\Actions\Blog\UpdateBlogCategory;
+use App\Actions\Core\CoreAction;
+use App\Actions\Finality\InertiaCreateFinality;
+use App\Actions\Finality\InertiaEditFinality;
+use App\Actions\Finality\InertiaFinalities;
+use App\Actions\Finality\QueryFinalities;
+use App\Actions\Finality\StoreFinality;
+use App\Actions\Finality\UpdateFinality;
+use App\Actions\Financier\InertiaCreateFinancier;
+use App\Actions\Financier\InertiaEditFinancier;
+use App\Actions\Financier\InertiaFinanciers;
+use App\Actions\Financier\QueryFinanciers;
+use App\Actions\Financier\StoreFinancier;
+use App\Actions\Financier\UpdateFinancier;
+use App\Actions\Generic\DeleteGeneric;
+use App\Actions\Generic\SaveOrder;
+use App\Actions\Numbers\InertiaCreateNumber;
+use App\Actions\Numbers\InertiaEditNumber;
+use App\Actions\Numbers\InertiaNumbers;
+use App\Actions\Numbers\QueryNumbers;
+use App\Actions\Numbers\StoreNumber;
+use App\Actions\Numbers\UpdateNumber;
+use App\Actions\Page\InertiaCreatePage;
+use App\Actions\Page\InertiaEditPage;
+use App\Actions\Page\InertiaPages;
+use App\Actions\Page\QueryPages;
+use App\Actions\Page\StorePage;
+use App\Actions\Page\UpdatePage;
+use App\Actions\PageItem\InertiaCreatePageItem;
+use App\Actions\PageItem\InertiaEditPageItem;
+use App\Actions\PageItem\InertiaPageItems;
+use App\Actions\PageItem\QueryPageItems;
+use App\Actions\PageItem\StorePageItem;
+use App\Actions\PageItem\UpdatePageItem;
+use App\Actions\Partner\InertiaCreatePartner;
+use App\Actions\Partner\InertiaEditPartner;
+use App\Actions\Partner\InertiaPartners;
+use App\Actions\Partner\QueryPartners;
+use App\Actions\Partner\StorePartner;
+use App\Actions\Partner\UpdatePartner;
+use App\Actions\Persons\InertiaCreatePerson;
+use App\Actions\Persons\InertiaEditPerson;
+use App\Actions\Persons\InertiaPersons;
+use App\Actions\Persons\QueryPersons;
+use App\Actions\Persons\StorePerson;
+use App\Actions\Persons\UpdatePerson;
+use App\Actions\Step\InertiaCreateStep;
+use App\Actions\Step\InertiaEditStep;
+use App\Actions\Step\InertiaSteps;
+use App\Actions\Step\QuerySteps;
+use App\Actions\Step\StoreStep;
+use App\Actions\Step\UpdateStep;
+use App\Actions\Testimonials\InertiaCreateTestimony;
+use App\Actions\Testimonials\InertiaEditTestimony;
+use App\Actions\Testimonials\InertiaTestimonials;
+use App\Actions\Testimonials\QueryTestimonials;
+use App\Actions\Testimonials\StoreTestimony;
+use App\Actions\Testimonials\UpdateTestimony;
+use App\Actions\Text\InertiaCreateText;
+use App\Actions\Text\InertiaEditText;
+use App\Actions\Text\InertiaTexts;
+use App\Actions\Text\QueryTexts;
+use App\Actions\Text\StoreText;
+use App\Actions\Text\UpdateText;
+use App\Actions\Videos\InertiaEditVideo;
+use App\Actions\Videos\UpdateVideo;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/core/{answer}', CoreAction::class)->name('core.action');
+
+Route::delete('/test-delete', [ProfileController::class, 'testDelete'])->name('teste.delete');
+
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+
+    Route::get('/banners/search={search}', InertiaBanners::class)->name('banners.index_search');
+    Route::get('/banners/', InertiaBanners::class)->name('banners.index');
+    Route::get('/banners/criar', InertiaCreateBanner::class)->name('banners.create');
+    Route::get('/banners/{id}/editar', InertiaEditBanner::class)->name('banners.edit');
+    Route::get('/banners/query', QueryBanners::class)->name('banners.query');
+    Route::post('/banners/store', StoreBanner::class)->name('banners.store');
+    Route::post('/banners/update', UpdateBanner::class)->name('banners.update');
+
+    Route::get('/textos/search={search}', InertiaTexts::class)->name('texts.index_search');
+    Route::get('/textos/', InertiaTexts::class)->name('texts.index');
+    Route::get('/textos/criar', InertiaCreateText::class)->name('texts.create');
+    Route::get('/textos/{id}/editar', InertiaEditText::class)->name('texts.edit');
+    Route::get('/textos/query', QueryTexts::class)->name('texts.query');
+    Route::post('/textos/store', StoreText::class)->name('texts.store');
+    Route::post('/textos/update', UpdateText::class)->name('texts.update');
+
+    Route::get('/vantagens/search={search}', InertiaBenefits::class)->name('benefits.index_search');
+    Route::get('/vantagens/', InertiaBenefits::class)->name('benefits.index');
+    Route::get('/vantagens/criar', InertiaCreateBenefit::class)->name('benefits.create');
+    Route::get('/vantagens/{id}/editar', InertiaEditBenefit::class)->name('benefits.edit');
+    Route::get('/vantagens/query', QueryBenefits::class)->name('benefits.query');
+    Route::post('/vantagens/store', StoreBenefit::class)->name('benefits.store');
+    Route::post('/vantagens/update', UpdateBenefit::class)->name('benefits.update');
+
+    Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/delete', DeleteGeneric::class)->name('generic.destroy');
+    Route::post('/save-order', SaveOrder::class)->name('save.order');
+    Route::post('/images/upload', [ImagesController::class, 'upload'])->name('images.upload');
+});

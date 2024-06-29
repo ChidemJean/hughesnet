@@ -1,0 +1,41 @@
+@import url('../fonts/Prompt/stylesheet.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Prompt-Regular', system-ui, sans-serif;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    @apply bg-primary;
+}
+
+.max-w-7xl {
+    @apply px-5;
+    @apply xl:px-0;
+}
+
+/* iframe .mce-content-body,
+.tox-statusbar,
+.tox-toolbar__overflow,
+.tox-editor-container .tox-menubar,
+.tox-editor-container .tox-editor-header,
+.tox-editor-container .tox-toolbar-overlord,
+.tox-editor-container .tox-toolbar__primary
+{
+    @apply dark:!bg-gray-900;
+}
+
+.tox-tinymce {
+    @apply !border-[1px];
+    @apply !border-gray-300;
+    @apply dark:!border-gray-700;
+}
+
+.swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-next):not(.swiper-slide-active) {
+    @apply duration-300 opacity-0;
+} */
