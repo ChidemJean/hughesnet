@@ -22,10 +22,10 @@ class UpdateBanner
     {
         return [
             'id' => "required|int",
-            'title' => "required|string",
+            'title' => "nullable|string",
             'text' => "nullable|string",
             'link' => "nullable|string",
-            'background_img' => "nullable|mimes:png,jpg,jpeg",
+            'background_img' => "required|mimes:png,jpg,jpeg",
             'background_img_tablet' => "nullable|mimes:png,jpg,jpeg",
             'background_img_mobile' => "nullable|mimes:png,jpg,jpeg",
         ];

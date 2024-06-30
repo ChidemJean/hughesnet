@@ -9,23 +9,22 @@ import { ArrowLeftIcon, CheckIcon, MagnifyingGlassIcon } from '@heroicons/react/
 import Form from './Form';
 import SecondaryButton from '@/admin/Components/SecondaryButton';
 
-export default function Edit({ auth, errors, banner }) {
-
+export default function Edit({ auth, errors, plan, items }) {
     return (
         <AuthenticatedLayout
             auth={auth}
             errors={errors}
             header={
                 <div className='w-full flex items-center justify-between'>
-                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Editar {banner.title}</h2>
+                    <h2 className="font-semibold text-base md:text-xl text-gray-800 dark:text-gray-200 leading-tight">Editar plano {plan.name}</h2>
                     <div className="flex items-center">
-                        <a href={route('banners.index')}>
+                        <a onClick={e => window.history.back()}>
                             <SecondaryButton className='mr-2'>
                                 <ArrowLeftIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                                 <span className="font-bold text-xs">Voltar</span>
                             </SecondaryButton>
                         </a>
-                        <PrimaryButton onClick={e => document.forms['update_banner'].requestSubmit()}>
+                        <PrimaryButton onClick={e => document.forms['update_plan'].requestSubmit()}>
                             <CheckIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                             <span className="font-bold text-xs">Salvar</span>
                         </PrimaryButton>
@@ -33,15 +32,11 @@ export default function Edit({ auth, errors, banner }) {
                 </div>
             }
         >
-            <Head title="Editar banner" />
+            <Head title="Editar plano" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-                        <section className={`space-y-6`}>
-                            <Form fields={{...banner}}/>
-                        </section>
-                    </div>
+                    <Form fields={{...plan}} plan_items={items} />
                 </div>
             </div>
         </AuthenticatedLayout>

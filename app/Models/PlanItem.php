@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ContactInf extends Model
+class PlanItem extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the inf that owns the contact
-     */
-    public function inf(): BelongsTo
+    protected $fillable = [
+        'id',
+        'title',
+        'text',
+    ];
+
+    public function plan(): BelongsTo
     {
-        return $this->belongsTo(GeralInf::class);
+        return $this->belongsTo(Plan::class, 'plan_id');
     }
 }

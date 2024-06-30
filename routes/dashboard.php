@@ -45,6 +45,8 @@ use App\Actions\Financier\StoreFinancier;
 use App\Actions\Financier\UpdateFinancier;
 use App\Actions\Generic\DeleteGeneric;
 use App\Actions\Generic\SaveOrder;
+use App\Actions\GeralInf\InertiaEditGeralInf;
+use App\Actions\GeralInf\UpdateGeralInf;
 use App\Actions\Numbers\InertiaCreateNumber;
 use App\Actions\Numbers\InertiaEditNumber;
 use App\Actions\Numbers\InertiaNumbers;
@@ -75,6 +77,12 @@ use App\Actions\Persons\InertiaPersons;
 use App\Actions\Persons\QueryPersons;
 use App\Actions\Persons\StorePerson;
 use App\Actions\Persons\UpdatePerson;
+use App\Actions\Plan\InertiaCreatePlan;
+use App\Actions\Plan\InertiaEditPlan;
+use App\Actions\Plan\InertiaPlans;
+use App\Actions\Plan\QueryPlans;
+use App\Actions\Plan\StorePlan;
+use App\Actions\Plan\UpdatePlan;
 use App\Actions\Step\InertiaCreateStep;
 use App\Actions\Step\InertiaEditStep;
 use App\Actions\Step\InertiaSteps;
@@ -134,6 +142,17 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/vantagens/query', QueryBenefits::class)->name('benefits.query');
     Route::post('/vantagens/store', StoreBenefit::class)->name('benefits.store');
     Route::post('/vantagens/update', UpdateBenefit::class)->name('benefits.update');
+
+    Route::get('/planos/search={search}', InertiaPlans::class)->name('plans.index_search');
+    Route::get('/planos/', InertiaPlans::class)->name('plans.index');
+    Route::get('/planos/criar', InertiaCreatePlan::class)->name('plans.create');
+    Route::get('/planos/{id}/editar', InertiaEditPlan::class)->name('plans.edit');
+    Route::get('/planos/query', QueryPlans::class)->name('plans.query');
+    Route::post('/planos/store', StorePlan::class)->name('plans.store');
+    Route::post('/planos/update', UpdatePlan::class)->name('plans.update');
+
+    Route::get('/geral/editar', InertiaEditGeralInf::class)->name('geral_inf.edit');
+    Route::post('/geral/update', UpdateGeralInf::class)->name('geral_inf.update');
 
     Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

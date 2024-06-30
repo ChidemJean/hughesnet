@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class GeralInf extends Model
+class Plan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'meta_description',
-        'footer_description',
-        'phone',
-        'whatsapp'
+        'name',
+        'price',
+        'obs1',
+        'obs2',
+        'link'
     ];
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(PlanItem::class);
+    }
 }

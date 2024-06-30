@@ -1,38 +1,39 @@
 <?php
 
-namespace App\Actions\Benefit;
+namespace App\Actions\Plan;
 
-use App\Models\Benefit;
+use App\Models\Plan;
 use Illuminate\Database\Eloquent\Collection;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Validation\Validator;
 use Inertia\Inertia;
 
-class QueryBenefits
+class QueryPlans
 {
     use AsAction;
 
     const DEFAULT_OFFSET = 0;
-    const DEFAULT_LIMIT = 5;
+    const DEFAULT_LIMIT = null;
 
-    public function handle(string $search = '', int $offset = self::DEFAULT_OFFSET, int $limit = self::DEFAULT_LIMIT)
+    public function handle(string $search = '', int $offset = self::DEFAULT_OFFSET, ?int $limit = self::DEFAULT_LIMIT)
     {
-        $count = Benefit::count();
-        $query = Benefit::select()
+        $count = Plan::count();
+        $query = Plan::select("*")
                     ->orderBy('order')
                     ->orderBy('id')
                     ->when(!empty($search), fn ($query) => (
-                        $query->where('title', 'like', '%'.$search.'%')
-                    ))
-                    ->skip($offset)
-                    ->take($limit);
-        $items = $query->get();
+                        $query->where('name', 'like', '%'.$search.'%')
+                    ));
+        if ($limit != null) {
+            $query->skip($offset);
+            $query->take($limit);
+        }
 
         return [
-            'items' => $items,
+            'items' => $query->get(),
             'count' => $count,
-            'model' => app(Benefit::class)->getTable()
+            'model' => app(Plan::class)->getTable()
         ];
     }
 

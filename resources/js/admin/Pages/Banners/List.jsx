@@ -20,18 +20,12 @@ export default function List(props) {
             identification: true
         },
         {
+            isTitle: true,
             Header: "Img",
             imgAccessor: 'background_img',
             keepMobile: true,
             openMobileOnClick: true,
             Cell: ImageCell
-        },
-        {
-            Header: "Título",
-            accessor: 'title',
-            isTitle: true,
-            keepMobile: true,
-            openMobileOnClick: true
         },
         {
             Header: "Link",

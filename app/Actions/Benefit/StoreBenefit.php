@@ -23,7 +23,7 @@ class StoreBenefit
         return [
             'title' => "required|string",
             'text' => "nullable|string",
-            'icon' => "nullable|mimes:png,jpg,jpeg",
+            'icon' => "nullable|mimes:svg",
         ];
     }
 

@@ -70,14 +70,20 @@ export default function Authenticated({ auth, header, children, classNameHeader 
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('texts.index')} active={route().current('texts.index')}>
+                                <NavLink href={route('geral_inf.edit')} active={route().current().includes('geral_inf')}>
+                                    Geral
+                                </NavLink>
+                                <NavLink href={route('texts.index')} active={route().current().includes('text')}>
                                     Textos
                                 </NavLink>
-                                <NavLink href={route('banners.index')} active={route().current('banners.index')}>
+                                <NavLink href={route('banners.index')} active={route().current().includes('banner')}>
                                     Banners
                                 </NavLink>
-                                <NavLink href={route('benefits.index')} active={route().current('benefits.index')}>
+                                <NavLink href={route('benefits.index')} active={route().current().includes('benefit')}>
                                     Vantagens
+                                </NavLink>
+                                <NavLink href={route('plans.index')} active={route().current().includes('plan')}>
+                                    Planos
                                 </NavLink>
                             </div>
                         </div>
@@ -147,17 +153,23 @@ export default function Authenticated({ auth, header, children, classNameHeader 
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current().includes('dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('banners.index')} active={route().current('banners.index')}>
+                        <ResponsiveNavLink href={route('geral_inf.edit')} active={route().current().includes('geral_inf')}>
+                            Geral
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('banners.index')} active={route().current().includes('banner')}>
                             Banners
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('texts.index')} active={route().current('texts.index')}>
+                        <ResponsiveNavLink href={route('texts.index')} active={route().current().includes('text')}>
                             Texts
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('benefits.index')} active={route().current('benefits.index')}>
+                        <ResponsiveNavLink href={route('benefits.index')} active={route().current().includes('benefit')}>
                             Vantagens
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('plans.index')} active={route().current().includes('plan')}>
+                            Planos
                         </ResponsiveNavLink>
                     </div>
 

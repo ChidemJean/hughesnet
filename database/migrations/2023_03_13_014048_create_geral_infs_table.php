@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('name')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('footer_description')->nullable();
+            $table->text('phone')->nullable();
+            $table->text('whatsapp')->nullable();
             $table->timestamps();
         });
     }

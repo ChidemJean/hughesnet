@@ -17,6 +17,13 @@ module.exports = {
     ],
 
     theme: {
+        container: {
+          center: true,
+          padding: "2rem",
+          screens: {
+            "2xl": "1400px",
+          },
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
@@ -55,13 +62,28 @@ module.exports = {
             fontSize: {
                 '4.5xl': '2.4rem',
                 '7.5xl': '4.75rem',
-            }
+            },
+            keyframes: {
+              "accordion-down": {
+                from: { height: "0" },
+                to: { height: "var(--radix-accordion-content-height)" },
+              },
+              "accordion-up": {
+                from: { height: "var(--radix-accordion-content-height)" },
+                to: { height: "0" },
+              },
+            },
+            animation: {
+              "accordion-down": "accordion-down 0.2s ease-out",
+              "accordion-up": "accordion-up 0.2s ease-out",
+            },
         }
     },
 
     plugins: [
         require('@tailwindcss/forms'),
         require('flowbite/plugin'),
+        require("tailwindcss-animate"),
         plugin(function ({ addBase, addComponents, addUtilities, theme }) {
             addBase({
                 'b': {

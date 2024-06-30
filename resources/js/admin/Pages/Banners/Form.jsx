@@ -15,8 +15,6 @@ const INDEX_URL = `banners.index`;
 
 export default function Form({
     fields,
-    authors,
-    categories
 }) {
     const titleInput = useRef();
     const editorInput = useRef();
@@ -45,12 +43,9 @@ export default function Form({
             slug: '',
             content: '',
             resume: '',
-            blog_category_id: null,
-            blog_author_id: null,
             background_img: null,
             background_img_tablet: null,
             background_img_mobile: null,
-            highlight: 0,
             published_at: null,
             ...restFields
         }
@@ -68,9 +63,9 @@ export default function Form({
     };
 
     return (
-        <form onSubmit={save} className="p-6">
+        <form onSubmit={save} className="p-6" name={`${fields ? 'update' : 'store'}_banner`}>
             <div className="flex flex-wrap -mx-2">
-                <div className="w-full md:w-1/2 mb-4 px-2">
+                {/* <div className="w-full md:w-1/2 mb-4 px-2">
                     <InputLabel htmlFor="title" value="Título" />
 
                     <TextInput
@@ -85,9 +80,9 @@ export default function Form({
                     />
 
                     <InputError message={errors.title} className="mt-2" />
-                </div>
+                </div> */}
 
-                <div className="w-full md:w-1/2 mb-4 px-2">
+                <div className="w-full mb-4 px-2">
                     <InputLabel htmlFor="link" value="Link" />
 
                     <TextInput
@@ -152,7 +147,7 @@ export default function Form({
                     <InputError message={errors.background_img_mobile} className="mt-2" />
                 </div>
 
-                <div className="w-full mb-4 px-2">
+                {/* <div className="w-full mb-4 px-2">
                     <InputLabel htmlFor="text" value="Texto" onClick={(e) => editorInput.current.focus()}/>
 
                     <TinyEditor
@@ -162,7 +157,7 @@ export default function Form({
                         value={data.text}/>
 
                     <InputError message={errors.text} className="mt-2" />
-                </div>
+                </div> */}
 
             </div>
 

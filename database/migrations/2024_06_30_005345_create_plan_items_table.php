@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Plan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\GeralInf;
 
 return new class extends Migration
 {
@@ -12,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address_infs', function (Blueprint $table) {
+        Schema::create('plan_items', function (Blueprint $table) {
             $table->id();
-            $table->string('identifier')->nullable();
-            $table->text('address')->nullable();
-            $table->foreignIdFor(GeralInf::class)->nullable()->constrained()->onDelete('cascade');
+            $table->text('title')->nullable();
+            $table->text('text')->nullable();
+            $table->foreignIdFor(Plan::class)->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('address_infs');
+        Schema::dropIfExists('plan_items');
     }
 };

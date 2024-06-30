@@ -25,7 +25,7 @@ export default function Create({ auth, errors }) {
                                 <span className="font-bold text-xs">Voltar</span>
                             </SecondaryButton>
                         </a>
-                        <PrimaryButton>
+                        <PrimaryButton onClick={e => { document.forms['store_benefit'].requestSubmit() }}>
                             <CheckIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                             <span className="font-bold text-xs">Salvar</span>
                         </PrimaryButton>

@@ -63,7 +63,7 @@ export default function Form({
     };
 
     return (
-        <form onSubmit={save} className="p-6">
+        <form onSubmit={save} className="p-6" name={`${fields ? 'update' : 'store'}_text`}>
             <div className="flex flex-wrap -mx-2">
                 <div className="w-full md:w-1/2 mb-4 px-2">
                     <InputLabel htmlFor="title" value="Título" />

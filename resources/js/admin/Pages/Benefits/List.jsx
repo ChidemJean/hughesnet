@@ -52,7 +52,7 @@ export default function List(props) {
             createUrl={'benefits.create'}
             editUrl={'benefits.edit'}
             queryKey='benefitsKey'
-            dndSortable={false}
+            dndSortable={true}
         />
     );
 }

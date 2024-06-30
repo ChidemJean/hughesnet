@@ -12,6 +12,7 @@ class Benefit extends Model
     protected $fillable = [
         'title',
         'text',
+        'order',
         'icon'
     ];
 }

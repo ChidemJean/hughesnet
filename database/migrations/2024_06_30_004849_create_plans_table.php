@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\GeralInf;
 
 return new class extends Migration
 {
@@ -12,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contact_infs', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('identifier')->nullable();
-            $table->string('type')->nullable();
-            $table->text('value')->nullable();
-            $table->foreignIdFor(GeralInf::class)->nullable()->constrained()->onDelete('cascade');
+            $table->text('name')->nullable();
+            $table->float('price')->nullable();
+            $table->text('obs1')->nullable();
+            $table->text('obs2')->nullable();
+            $table->text('link')->nullable();
+            $table->integer('order')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact_infs');
+        Schema::dropIfExists('plans');
     }
 };
