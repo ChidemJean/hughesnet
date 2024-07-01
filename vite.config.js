@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     plugins: [
         laravel({
-            publicDirectory: 'httpdocs',
+            publicDirectory: 'public',
             input: ['resources/js/admin/dashboard.jsx', 'resources/js/site/site.jsx'],
             refresh: true,
         }),

@@ -6,9 +6,9 @@
 /public_html/build
 /public_html/hot
 /public_html/storage
-/httpdocs/build
-/httpdocs/hot
-/httpdocs/storage
+/public/build
+/public/hot
+/public/storage
 /storage/*.key
 /vendor
 /_vendor

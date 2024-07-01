@@ -6,6 +6,6 @@ class Application extends \Illuminate\Foundation\Application
 {
     public function publicPath($path = '')
     {
-        return $this->joinPaths($this->publicPath ?: $this->basePath('httpdocs'), $path);
+        return $this->joinPaths($this->publicPath ?: $this->basePath('public'), $path);
     }
 }

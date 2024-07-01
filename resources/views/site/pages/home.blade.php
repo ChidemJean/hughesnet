@@ -11,8 +11,8 @@
         <section id="vantagens" class="bg-primary">
             <div class="mx-auto flex flex-col max-w-7xl py-9 items-center justify-center">
                 <div class="mb-4 flex flex-col items-center">
-                    <h2 class="text-xl sm:text-3xl text-primarydark inline-block w-fit font-primary-black text-center leading-tight mb-1">
-                        @markdown($vantagensTexto->title)
+                    <h2 class="text-xl sm:text-3xl text-primarydark inline-block w-fit font-primary-black text-center leading-tight mb-1 title-markdown">
+                        <x-markdown>{!! $vantagensTexto->title !!}</x-markdown>
                     </h2>
                     <div class="text-white text-center">{!! $vantagensTexto->content !!}</div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="mx-auto flex flex-col max-w-7xl py-9 items-center justify-center">
                 <div class="mb-4 flex flex-col items-center">
                     <h2 class="text-xl sm:text-3xl text-primary inline-block md:w-[660px] font-primary-black text-center leading-tight mb-1 title-markdown">
-                        @markdown($planosTexto->title)
+                        <x-markdown>{!! $planosTexto->title !!}</x-markdown>
                     </h2>
                 </div>
                 <div class="w-full flex flex-wrap justify-center mt-3" data-controller="plans-slider">

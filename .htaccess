@@ -1,5 +1,8 @@
+#AddHandler php82-script .php
+#suPHP_ConfigPath /home/site1389354461/
+
 RewriteEngine On
 #RewriteCond %{HTTPS} != on
 #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-RewriteCond %{REQUEST_URI} !httpdocs/
-RewriteRule (.*) /httpdocs/$1 [L]
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
