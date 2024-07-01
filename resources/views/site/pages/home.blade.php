@@ -87,7 +87,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="swiper-pagination relative mt-3"></div>
+                    <div class="swiper-pagination !relative mt-3"></div>
                 </div>
                 <div class="text-sm text-[#7C7C7C] mt-4">{!! $planosTexto->content !!}</div>
             </div>
