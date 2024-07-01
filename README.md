@@ -1,2 +1,2 @@
 
-## Mais Ensino - Laravel
+## HughesNet - Laravel
