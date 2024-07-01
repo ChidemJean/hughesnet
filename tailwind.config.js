@@ -31,10 +31,12 @@ module.exports = {
         },
         colors: {
             ...colors,
-            'primary': '#3F6BFF',
-            'primarylight': '#00CFFF',
-            'secondary': '#A8CF45',
-            'secondarylight': '#A8CF45',
+            'primary': '#0760A7',
+            'primarylight': '#0760A7',
+            'primarydark': '#073B64',
+            'secondary': '#FE6A01',
+            'secondarylight': '#ff8936',
+            'secondarydark': '#cf5600',
             'terciary': '#8200FF',
         },
         extend: {
@@ -42,19 +44,19 @@ module.exports = {
                 'banner-text': '0 2px 2px rgba(0,0,0,0.8)'
             },
             fontFamily: {
-                'primary': 'Prompt-Regular',
-                'primary-semibold': 'Prompt-SemiBold',
-                'primary-bold': 'Prompt-Bold',
-                'primary-black': 'Prompt-Black',
-                'primary-extrabold': 'Prompt-ExtraBold',
-                'secondary': 'Prompt-Regular',
-                'secondary-bold': 'Prompt-Bold',
-                'secondary-black': 'Prompt-Black',
-                'secondary-extrabold': 'Prompt-Black',
-                'terciary': 'Prompt-Regular',
-                'terciary-bold': 'Prompt-Bold',
-                'terciary-black': 'Prompt-Black',
-                'terciary-extrabold': 'Prompt-Black'
+                'primary': 'Open Sans',
+                'primary-semibold': 'Open Sans SemiBold',
+                'primary-bold': 'Open Sans Bold',
+                'primary-black': 'Open Sans ExtraBold',
+                'primary-extrabold': 'Open Sans ExtraBold',
+                'secondary': 'Open Sans',
+                'secondary-bold': 'Open Sans Bold',
+                'secondary-black': 'Open Sans ExtraBold',
+                'secondary-extrabold': 'Open Sans ExtraBold',
+                'terciary': 'Open Sans',
+                'terciary-bold': 'Open Sans Bold',
+                'terciary-black': 'Open Sans ExtraBold',
+                'terciary-extrabold': 'Open Sans ExtraBold'
             },
             backgroundImage: {
                 'gradient': 'linear-gradient(73deg, #8200FF 33.83%, #00CFFF 84.08%)'

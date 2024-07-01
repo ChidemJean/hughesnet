@@ -11,6 +11,7 @@ use App\Models\Financier;
 use App\Models\Number;
 use App\Models\Partner;
 use App\Models\Person;
+use App\Models\Plan;
 use App\Models\Step;
 use App\Models\Testimony;
 use App\Models\Video;
@@ -24,10 +25,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::select()->where('highlight', '=', 1)->take(5)->get();
         $banners = Banner::inRandomOrder()->get();
 
-        $idsTextosHome = [1, 2, 3, 5, 6];
+        $idsTextosHome = [1, 2, 3];
 
         $textosHome = DB::table('texts')
                 ->select('texts.*')
@@ -38,46 +38,26 @@ class HomeController extends Controller
             return $value->id == 1;
         });
 
-        $experienciasTexto = Arr::first($textosHome, function ($value, int $key) {
+        $vantagensTexto = Arr::first($textosHome, function ($value, int $key) {
             return $value->id == 2;
         });
 
-        $conquistasTexto = Arr::first($textosHome, function ($value, int $key) {
+        $planosTexto = Arr::first($textosHome, function ($value, int $key) {
             return $value->id == 3;
         });
 
-        $noticiasTexto = Arr::first($textosHome, function ($value, int $key) {
-            return $value->id == 6;
-        });
-
-        $depoimentosTexto = Arr::first($textosHome, function ($value, int $key) {
-            return $value->id == 5;
-        });
-
-        $numbers = Number::select("*")
-            ->orderBy('order')
-            ->orderBy('id')
-            ->get()->toArray();
-
-        $persons = Person::select("*")
+        $benefits = Benefit::select("*")
             ->orderBy('order')
             ->orderBy('id')
             ->get();
 
-        $testimonies = Testimony::select("*")
+        $plans = Plan::select("*")
             ->orderBy('order')
             ->orderBy('id')
+            ->with('items')
             ->get();
 
-        if (!empty($testimonies)) {
-            foreach ($testimonies as $key => $testimoy) {
-                if (!empty($testimoy->video)) {
-                    $testimoy->video = VideoUtils::getEmbedUrl($testimoy->video);
-                }
-            }
-        }
-
-        return view('site.pages.home', compact('articles', 'banners', 'sobreHome', 'experienciasTexto', 'conquistasTexto', 'noticiasTexto', 'depoimentosTexto', 'testimonies', 'numbers', 'persons'));
+        return view('site.pages.home', compact('banners', 'sobreHome', 'vantagensTexto', 'planosTexto', 'benefits', 'plans'));
     }
 
 }

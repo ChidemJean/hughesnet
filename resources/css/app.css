@@ -1,4 +1,4 @@
-@import url('../fonts/Prompt/stylesheet.css');
+@import url('../fonts/OpenSans/stylesheet.css');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
     html {
-        font-family: 'Prompt-Regular', system-ui, sans-serif;
+        font-family: 'Open Sans', system-ui, sans-serif;
     }
 }
 
@@ -19,6 +19,9 @@
     @apply xl:px-0;
 }
 
+.title-markdown strong {
+    @apply text-[#008EFF];
+}
 /* iframe .mce-content-body,
 .tox-statusbar,
 .tox-toolbar__overflow,

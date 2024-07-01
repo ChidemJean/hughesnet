@@ -7,6 +7,8 @@ import { Link } from '@inertiajs/react';
 import toast, { Toaster } from 'react-hot-toast';
 import { CheckCircleIcon, ChevronDownIcon, PowerIcon, UserIcon, UserPlusIcon, XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import ThemeSwitcher from '../Components/ThemeSwitcher';
+import moment from 'moment';
+import { LuExternalLink } from "react-icons/lu";
 
 export const notify = (props) => {
     toast.custom((t) => (
@@ -198,7 +200,15 @@ export default function Authenticated({ auth, header, children, classNameHeader 
             )}
 
             <main>{children}</main>
-
+            <footer className='border-t border-gray-200 dark:border-gray-800 py-3'>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
+                    <p className='text-gray-400 dark:text-gray-600 text-sm'>Painel de controle<b className='inline-block mx-2'>•</b>{moment().format('YYYY')}</p>
+                    <a href={route('home')} target='_blank' className='text-gray-400 dark:text-gray-600 text-sm flex items-center hover:!text-indigo-500 duration-200'>
+                        <LuExternalLink className='inline-block mr-2'/>
+                        Acessar site
+                    </a>
+                </div>
+            </footer>
             <Toaster />
         </div>
     );

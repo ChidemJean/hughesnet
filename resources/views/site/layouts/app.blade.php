@@ -26,7 +26,7 @@
     <meta name="Publisher" content="{{ env('COMPANY_NAME') }}" />
     <meta name="owner" content="{{ env('COMPANY_NAME') }}" />
     <meta name="copyright" content="{{ env('COMPANY_NAME') }}" />
-    <meta name="description" content="{{ env('COMPANY_DESCRIPTION') }}" />
+    <meta name="description" content="{{ $geral_inf->meta_description ?? env('COMPANY_DESCRIPTION') }}" />
     <meta name="keywords" content="{{ env('KEY_WORDS') }}" />
     <meta name="robots" content="index,follow" />
     <meta name="rating" content="General" />
@@ -43,24 +43,20 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     @vite(['resources/js/site/site.jsx'])
 </head>
 
 <body class="antialiased text-lg">
     @include('site.components.header')
-    <main style="margin-top: 92px;">
+    <main class="mt-[86.6px] md:mt-0">
         @if (request()->routeIs('home'))
             @include('site.components.banner')
         @endif
         @yield('content')
     </main>
     <x-footer />
-    <a href="https://wa.me/message/HEFEW3CW7VVSP1" target="_blank" class="w-[60px] h-futo fixed bottom-[30px] right-[30px] z-50 hover:saturate-200 duration-300">
-        <img src="{{ asset('img/whatsapp.png') }}" class="w-full h-auto"/>
+    <a href="https://api.whatsapp.com/send?phone={{ $geral_inf->whatsapp }}" target="_blank" class="rounded-full flex items-center justify-center w-[54px] h-[54px] fixed bottom-[30px] right-[30px] z-50 hover:saturate-200 duration-300 bg-[#24CC64]">
+        <img src="{{ asset('img/whatsapp.svg') }}" class="w-[55%]"/>
     </a>
 </body>
 

@@ -1,17 +1,21 @@
 <footer class="relative py-14 bg-primarylight mt-0">
-    <div class="relative z-2 mx-auto flex flex-wrap max-w-7xl items-center justify-center">
+    <div class="relative z-2 mx-auto flex-col gap-4 md:gap-0 md:flex-row flex flex-wrap max-w-7xl items-center justify-between">
         <div class="flex flex-col items-center text-center">
-            <img src="{{ asset('img/logo.png') }}" class="w-80 max-w-full"/>
-            <div class="w-full md:w-auto text-white">
-                <div class="my-5 flex justify-center md:justify-start">
-                    <a href="https://www.facebook.com/MaisEnsinoMaisFormacao/" target="_blank" class="text-sm w-8 h-8 mr-2 inline-flex items-center justify-center rounded-full border border-white font-semibold leading-6 text-white hover:bg-white hover:text-black transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/maisensinomaisformacao/" target="_blank" class="text-sm w-8 h-8 mr-2 inline-flex items-center justify-center rounded-full border border-white font-semibold leading-6 text-white hover:bg-white hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/channel/UCaWz5SlkCIriOfLX2DvNzhw" target="_blank" class="text-sm w-8 h-8 mr-4 inline-flex items-center justify-center rounded-full border border-white font-semibold leading-6 text-white hover:bg-white hover:text-black transition"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="w-[480px] max-w-[90vw] mx-auto text-center h-fit text-white">
-                {!! $textoRodape->content !!}
+            <img src="{{ asset('img/logo.png') }}" class="w-52 max-w-full"/>
+            <div class="mx-auto text-center h-fit text-white">
+                {!! $textoRodape !!}
             </div>
         </div>
+        <a href="tel:{{ $geral_inf->phone }}" class="group flex flex-row">
+            <img src="{{ asset('img/phone.svg') }}" class="opacity-40 w-[30px]"/>
+            <div class="text-white flex flex-col ml-2">
+                <span class="text-xs leading-[1] opacity-90">Central de vendas</span>
+                <span class="font-primary-extrabold text-base leading-[1.2] group-hover:text-secondary duration-200">{{ $geral_inf->phone }}</span>
+            </div>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone={{ $geral_inf->whatsapp }}" target="_blank" class="text-white hover:text-[#24CC64] duration-200 font-primary-bold flex items-center justify-center leading-[1] px-4">
+            <img src="{{ asset('img/whatsapp.svg') }}" class="w-[25px] inline-block mr-3"/>    
+            Compre pelo WhatsApp
+        </a>
     </div>
 </footer>

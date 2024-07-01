@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\Models\Text;
+use App\Models\GeralInf;
 use Illuminate\View\Component;
 
 class Footer extends Component
@@ -24,7 +24,7 @@ class Footer extends Component
      */
     public function render()
     {
-        $textoRodape = Text::find(7);
+        $textoRodape = GeralInf::find(1)->footer_description ?? '';
         return view('site.components.footer', compact('textoRodape'));
     }
 }

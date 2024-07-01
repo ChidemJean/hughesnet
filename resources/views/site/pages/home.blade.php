@@ -3,149 +3,95 @@
 @section('title', 'Home')
 
 @section('content')
-    @empty($sobreHome)
-    @else
-        <section id="about" class="py-16 bg-gradient">
-            <div class="mx-auto flex flex-wrap max-w-7xl items-center justify-between">
-                <div class="w-full md:w-2/5 mb-8 md:mb-0">
-                    <hr class="w-[80px] h-[12px] mb-3 bg-white rounded-sm"/>
-                    <h2 class="text-5xl text-white font-primary-black leading-none mb-5">{{ $sobreHome->title }}</h2>
-                    <div class="mb-5 text-white">
-                        {!! $sobreHome->content !!}
-                    </div>
-                    @if(!empty($sobreHome->img))
-                        <img src="{{ asset($sobreHome->img) }}" class="w-[140px] max-w-full h-auto rounded-[20px]"/>
-                    @endif
+    <section id="sobre">
+        @include('site.components.text-item-1', [ 'texto' => $sobreHome ])
+    </section>
+
+    @if(!empty($benefits))
+        <section id="vantagens" class="bg-primary">
+            <div class="mx-auto flex flex-col max-w-7xl py-9 items-center justify-center">
+                <div class="mb-4 flex flex-col items-center">
+                    <h2 class="text-xl sm:text-3xl text-primarydark inline-block w-fit font-primary-black text-center leading-tight mb-1">
+                        @markdown($vantagensTexto->title)
+                    </h2>
+                    <div class="text-white text-center">{!! $vantagensTexto->content !!}</div>
                 </div>
-                <div class="w-full md:w-2/5">
-                    <div class="swiper relative" data-controller="slider-equipe">
+                <div class="w-full flex flex-wrap justify-center mt-3">
+                    @foreach($benefits as $benefit)
+                        <div class="w-[280px] px-10 py-5 mx-6 my-2 flex flex-col items-center justify-start flex-wrap text-center bg-primarydark rounded-2xl border-2 border-primarydark hover:bg-transparent hover:border-white/20 duration-200">
+                            <img src="{{ asset($benefit->icon) }}" class="w-[40px] h-auto object-contain object-center"/>
+                            <h4 class="text-white font-primary-bold text-center mt-4 text-lg leading-[1.1] mb-3">
+                                {{ $benefit->title }}
+                            </h4>
+                            <div class="text-white text-xs">{!! $benefit->text !!}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(!empty($plans))
+        <section id="planos">
+            <div class="mx-auto flex flex-col max-w-7xl py-9 items-center justify-center">
+                <div class="mb-4 flex flex-col items-center">
+                    <h2 class="text-xl sm:text-3xl text-primary inline-block md:w-[660px] font-primary-black text-center leading-tight mb-1 title-markdown">
+                        @markdown($planosTexto->title)
+                    </h2>
+                </div>
+                <div class="w-full flex flex-wrap justify-center mt-3" data-controller="plans-slider">
+                    <div class="swiper w-full md:w-[75%]">
                         <div class="swiper-wrapper">
-                            @foreach($persons as $person)
+                            @foreach($plans as $plan)
                                 <div class="swiper-slide">
-                                    <div class="w-full h-[460px] relative rounded-md overflow-hidden group">
-                                        <img src="{{ asset($person->photo) }}" class="w-full h-full object-cover mb-3 z-10"/>
-                                        @if ($person->presentation)
-                                            <div class="top-0 left-0 w-full h-full p-5 absolute text-white bg-primary/70 opacity-0 duration-200 group-hover:opacity-100 group-hover:backdrop-blur-sm">{!! $person->presentation !!}</div>
+                                    <div class="w-full h-[390px] relative">
+                                        <div class="py-3 bg-primary">
+                                            <h3 class="text-center font-primary-extrabold text-white">{{ $plan->name }}</h3>
+                                        </div>
+                                        <div>
+                                            <div class="font-primary-extrabold text-primary flex flex-row items-end justify-center mt-7 mb-5">
+                                                <span class="leading-[1] inline-flex mr-2">R$</span>
+                                                <b class="text-5xl font-primary-extrabold leading-[0.9] inline-flex mr-1">{{ $plan->price }}</b>
+                                                <span class="inline-flex flex-col">
+                                                    <span class="leading-[1.2]">
+                                                        ,{{ $plan->price }}
+                                                        @if(!empty($plan->obs1))*@endif
+                                                    </span>
+                                                    <span class="text-[#7C7C7C] font-primary leading-[1]">/mês</span>
+                                                </span>
+                                            </div>
+                                            <div class="text-center text-[#7C7C7C] text-[0.65rem] leading-[1.2] h-[50px]">
+                                                {!! $plan->obs1 !!}
+                                            </div>
+                                        </div>
+                                        @if (!empty($plan->items))
+                                            <div class="mb-4">
+                                                @foreach ($plan->items as $item)
+                                                    <div class="flex w-full justify-between border-b border-zinc-200 py-1 last:border-none text-primary text-sm">
+                                                        <span>{{ $item->title }}</span>
+                                                        <span class="font-primary-extrabold">{{ $item->text }}</span>
+                                                    </div>                                        
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                        <div class="text-left text-[#7C7C7C] text-[0.65rem] leading-[1.2]">
+                                            {!! $plan->obs2 !!}
+                                        </div>
+                                        @if (!empty($plan->link))
+                                            <a href="{{ $plan->link }}" target="_blank" class="absolute left-0 bottom-0 w-full rounded-md bg-secondary text-white font-primary-extrabold flex items-center justify-center leading-[1] mt-5 px-4 py-3 border-b-2 border-secondarydark hover:bg-secondarylight duration-200">
+                                                COMPRE AGORA
+                                            </a>
                                         @endif
                                     </div>
-                                    <h3 class="text-white font-primary-extrabold text-xl mt-3">{{ $person->name }}</h3>
-                                    <p class="text-white">{{ $person->assignment }}</p>
                                 </div>
                             @endforeach
-                        </div>
-                        <div class="swiper-button-prev after:!hidden !absolute !bottom-0 !right-10 !left-auto !top-auto hover:opacity-60 duration-300">
-                            <img src="{{ asset('img/arrow_white.png') }}" class="rotate-180"/>
-                        </div>
-                        <div class="swiper-button-next after:!hidden !absolute !bottom-0 !right-0 !left-auto !top-auto hover:opacity-60 duration-300">
-                            <img src="{{ asset('img/arrow_white.png') }}" />
                         </div>
                     </div>
+                    <div class="swiper-pagination relative mt-3"></div>
                 </div>
+                <div class="text-sm text-[#7C7C7C] mt-4">{!! $planosTexto->content !!}</div>
             </div>
         </section>
-    @endempty
+    @endif
 
-    @empty($experienciasTexto)
-    @else
-        <section id="experiencias" class="py-8">
-            <div class="mx-auto flex flex-wrap max-w-7xl items-center justify-between">
-                <hr class="w-[80px] h-[12px] mb-5 bg-primary mx-auto rounded-sm"/>
-                <h2 class="text-5xl text-primary font-primary-black text-center w-full leading-none mb-5">{{ $experienciasTexto->title }}</h2>
-            </div>
-        </section>
-        <x-pages-items />
-    @endempty
-
-    @empty($conquistasTexto)
-    @else
-        <section id="conquistas" class="pt-10 bg-[#E2F3F6] relative">
-            <div class="mx-auto flex flex-wrap max-w-7xl pb-56 items-center justify-between relative z-20">
-                <hr class="w-[80px] h-[12px] mb-5 bg-primary mx-auto rounded-sm"/>
-                <h2 class="text-5xl text-primary font-primary-black text-center w-full leading-none mb-5">{{ $conquistasTexto->title }}</h2>
-                @if($conquistasTexto->img)
-                    <img src="{{ $conquistasTexto->img }}" class="absolute bottom-0 left-1/2 -translate-x-1/2 md:max-w-[400px] max-w-full hidden md:block"/>
-                @endif
-                <div class="flex justify-between w-[820px] max-w-full mx-auto mt-10 relative z-30">
-                    @foreach(array_chunk($numbers, ceil(count($numbers)/2)) as $chunk)
-                        <div class="@if($loop->even) text-right @endif">
-                            @foreach($chunk as $number)
-                                <div class="mb-6">
-                                    <h4 class="font-primary-black text-5xl text-primary" data-controller="number" data-to="{{ $number['number'] }}">0</h4>
-                                    <p class="text-primary text-3xl">{{ $number['title'] }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <img src="{{ asset('img/waves_half.png') }}" class="absolute bottom-0 left-[calc(46%)] -translate-x-1/2 z-10"/>
-        </section>
-    @endempty
-
-    <x-video-comp />
-
-    <x-contact-form />
-
-    @empty($depoimentosTexto)
-    @else
-        <section id="depoimentos" class="pt-10 pb-16 bg-[#E2F3F6] relative overflow-hidden">
-            <div class="mx-auto flex flex-wrap max-w-7xl items-center justify-between">
-                <hr class="w-[80px] h-[12px] mb-5 bg-[#1BA4FF] mx-auto rounded-sm"/>
-                <h2 class="text-5xl text-[#1BA4FF] font-primary-black text-center w-full leading-none mb-5">{{ $depoimentosTexto->title }}</h2>
-                <div class="flex justify-center w-full flex-wrap mx-auto mt-10 relative z-30" data-controller="slider-testimonies">
-                    <div class="swiper !overflow-visible !w-full">
-                        <div class="swiper-wrapper">
-                            @foreach($testimonies as $testimony)
-                                <div class="swiper-slide">
-                                    {{-- <div class="shadow-2xl bg-white rounded-md px-6 py-4 w-full">
-                                        <div class="mx-auto mb-4 w-[150px] h-[150px] rounded-full overflow-hidden bg-primary/10">
-                                            <img src="{{ asset($testimony->photo) }}" class="w-full h-full object-cover object-center" />
-                                        </div>
-                                        <div class="text-center text-zinc-500 mb-4 text-base">
-                                            {!! $testimony->text !!}
-                                        </div>
-                                        <h4 class="font-primary-extrabold text-center text-xl text-zinc-500">{{ $testimony->name }}</h4>
-                                        <p class="text-zinc-500 text-lg text-center">{{ $testimony->assignment }}</p>
-                                    </div> --}}
-                                    <div class="shadow-2xl bg-white rounded-md overflow-hidden w-full h-[260px]">
-                                        <iframe src="{{ $testimony->video }}" class="w-full h-full"></iframe>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="swiper-button-prev after:!hidden !absolute !right-auto !-left-14 hover:opacity-60 duration-300">
-                            <img src="{{ asset('img/arrow_blue.png') }}" class="rotate-180 w-[40px] h-auto max-w-none"/>
-                        </div>
-                        <div class="swiper-button-next after:!hidden !absolute !left-auto !-right-14 hover:opacity-60 duration-300">
-                            <img src="{{ asset('img/arrow_blue.png') }}" class="w-[40px] h-auto max-w-none" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endempty
-
-    @empty($articles)
-    @else
-        <section id="last-articles">
-            <div class="mx-auto flex flex-wrap max-w-7xl py-10">
-                <hr class="w-[80px] h-[12px] mb-5 bg-secondary mx-auto rounded-sm"/>
-                <h2 class="text-5xl text-secondary font-primary-black text-center w-full leading-none mb-5">{{ $noticiasTexto->title }}</h2>
-                @foreach ($articles as $article)
-                    @if ($loop->first)
-                        <div class="w-full md:w-1/2">
-                            <x-article-item size="big" :$article/>
-                        </div>
-                    @endif
-                @endforeach
-                <div class="w-full md:w-1/2 flex-wrap flex justify-center">
-                    @foreach ($articles as $article)
-                        @if (!$loop->first)
-                            <x-article-item size="" :$article/>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endempty
 @endsection
