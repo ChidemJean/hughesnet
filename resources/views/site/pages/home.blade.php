@@ -43,6 +43,8 @@
                     <div class="swiper w-full md:w-[75%]">
                         <div class="swiper-wrapper">
                             @foreach($plans as $plan)
+                                @php($price = number_format($plan->price, 2, ',', ''))
+                                @php($price_dec_idx = strpos($price, ','))
                                 <div class="swiper-slide">
                                     <div class="w-full h-[390px] relative">
                                         <div class="py-3 bg-primary">
@@ -51,10 +53,10 @@
                                         <div>
                                             <div class="font-primary-extrabold text-primary flex flex-row items-end justify-center mt-7 mb-5">
                                                 <span class="leading-[1] inline-flex mr-2">R$</span>
-                                                <b class="text-5xl font-primary-extrabold leading-[0.9] inline-flex mr-1">{{ $plan->price }}</b>
+                                                <b class="text-5xl font-primary-extrabold leading-[0.9] inline-flex mr-1">{{ substr($price, 0, $price_dec_idx) }}</b>
                                                 <span class="inline-flex flex-col">
                                                     <span class="leading-[1.2]">
-                                                        ,{{ $plan->price }}
+                                                        ,{{ substr($price, $price_dec_idx + 1, strlen($price)) }}
                                                         @if(!empty($plan->obs1))*@endif
                                                     </span>
                                                     <span class="text-[#7C7C7C] font-primary leading-[1]">/mês</span>
