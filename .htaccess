@@ -1,5 +1,5 @@
-#AddHandler php82-script .php
-#suPHP_ConfigPath /home/site1389354461/
+#AddHandler php80-script .php
+#suPHP_ConfigPath /home/site1389354461/public_html/
 
 RewriteEngine On
 #RewriteCond %{HTTPS} != on

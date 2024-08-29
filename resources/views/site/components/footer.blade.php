@@ -6,7 +6,7 @@
                 {!! $textoRodape !!}
             </div>
         </div>
-        <a href="tel:{{ $geral_inf->phone }}" class="group flex flex-row">
+        <a href="tel:{{ $geral_inf->phone }}" class="group flex flex-row" @if(empty($geral_inf->phone)) style="opacity: 0 !important; pointer-events: none !important;" @endif>
             <img src="{{ asset('img/phone.svg') }}" class="opacity-40 w-[30px]"/>
             <div class="text-white flex flex-col ml-2">
                 <span class="text-xs leading-[1] opacity-90">Central de vendas</span>
